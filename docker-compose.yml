@@ -1,0 +1,16 @@
+app:
+  build: .
+  volumes:
+    - .:/usr/src/app
+  ports:
+    - '3000'
+  links:
+   - rabbit
+  environment:
+    RABBIT_URL: 'amqp://rabbit:5672'
+
+rabbit:
+  image: rabbitmq:management
+  ports:
+    - '5672:5672'
+    - '15672:15672'
